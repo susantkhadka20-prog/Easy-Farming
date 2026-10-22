@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreenPastures | Farm Manager | Susant Khadka</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-icon">🌿</span><span><strong>GreenPastures</strong><small>Farm Management</small></span></a>
+    <div class="header-date" id="todayLabel">Your farm, all in one place</div>
+  </header>
+
+  <main class="container">
+    <section class="welcome">
+      <div><p class="eyebrow">FARM DASHBOARD</p><h1>Farm overview</h1><p class="muted">Keep your animals healthy and your daily routine on track.</p></div>
+      <button class="button button-light" id="enableNotifications" type="button">🔔 Enable notifications</button>
+    </section>
+
+    <section class="alarm-banner" id="alarmBanner" role="status" aria-live="polite">
+      <div><strong>⏰ It's feeding time!</strong><p id="alarmText">Check your feeding schedule.</p></div>
+      <button class="button button-light" id="dismissAlarm" type="button">Dismiss</button>
+    </section>
+
+    <section class="stats">
+      <article class="stat-card"><div class="stat-label">Total animals <span>🐄</span></div><strong id="totalAnimals">0</strong><small>Animals registered</small></article>
+      <article class="stat-card"><div class="stat-label">Animal types <span>🐾</span></div><strong id="animalTypes">0</strong><small>Different categories</small></article>
+      <article class="stat-card"><div class="stat-label">Feedings today <span>🌾</span></div><strong id="feedingCount">0</strong><small>Scheduled reminders</small></article>
+      <article class="stat-card"><div class="stat-label">Completed today <span>✓</span></div><strong id="completedCount">0</strong><small>Marked as fed</small></article>
+    </section>
+
+    <section class="main-grid">
+      <div class="forms-column">
+        <section class="panel">
+          <h2>➕ Add an animal</h2><p class="muted panel-description">Add an animal or group to your farm records.</p>
+          <form id="animalForm">
+            <label for="animalName">Animal / group name</label>
+            <input id="animalName" name="animalName" placeholder="e.g. Daisy or Young goats" maxlength="60" required>
+            <div class="two-columns">
+              <div><label for="animalType">Animal type</label>
+                <select id="animalType" name="animalType">
+                  <option value="Cow">🐄 Cow</option><option value="Buffalo">🐃 Buffalo</option><option value="Goat">🐐 Goat</option><option value="Sheep">🐑 Sheep</option><option value="Chicken">🐔 Chicken</option><option value="Pig">🐖 Pig</option><option value="Horse">🐎 Horse</option><option value="Duck">🦆 Duck</option><option value="Other">🐾 Other</option>
+                </select>
+              </div>
+              <div><label for="animalQty">Quantity</label><input id="animalQty" name="animalQty" type="number" min="1" max="100000" value="1" required></div>
+            </div>
+            <label for="animalNotes">Notes (optional)</label><input id="animalNotes" name="animalNotes" placeholder="e.g. Shed 2, special feed">
+            <button class="button button-primary full-width" type="submit">Add to my farm</button>
+          </form>
+        </section>
+
+        <section class="panel">
+          <h2>⏰ Feeding schedule</h2><p class="muted panel-description">Create daily reminders for an animal or group.</p>
+          <form id="feedingForm">
+            <label for="feedAnimal">Animal / group</label><select id="feedAnimal" name="feedAnimal" required><option value="">Add an animal first</option></select>
+            <div class="two-columns">
+              <div><label for="feedTime">Feeding time</label><input id="feedTime" name="feedTime" type="time" value="07:00" required></div>
+              <div><label for="feedLabel">Reminder</label><select id="feedLabel" name="feedLabel"><option>Morning feed</option><option>Midday feed</option><option>Evening feed</option><option>Water check</option><option>Medicine</option><option>Custom reminder</option></select></div>
+            </div>
+            <button class="button button-primary full-width" type="submit">＋ Add daily reminder</button>
+          </form>
+          <p class="notice">🔔 Keep this page open for alarms. Allow notifications when asked. Your device volume must be on for the sound to play.</p>
+        </section>
+      </div>
+
+      <div class="data-column">
+        <section class="panel">
+          <div class="panel-heading"><div><h2>🐾 Animals on your farm</h2><p class="muted panel-description">Manage your current livestock.</p></div><input class="search-input" id="animalSearch" placeholder="Search animals…" aria-label="Search animals"></div>
+          <div id="animalTableWrap"></div>
+        </section>
+        <section class="panel">
+          <div class="panel-heading"><div><h2>🌾 Today's feeding plan</h2><p class="muted panel-description">Reminders repeat every day.</p></div><button class="button button-light button-small" id="testAlarm" type="button">Test alarm</button></div>
+          <div class="feeding-list" id="feedingList"></div>
+        </section>
+      </div>
+    </section>
+    <footer>GreenPastures Farm Manager · Records are saved in this browser on this device.| For update contact Susant Khadka</footer>
+  </main>
+</body>
+</html>
